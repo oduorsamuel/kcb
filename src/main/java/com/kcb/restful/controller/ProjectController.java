@@ -28,4 +28,9 @@ public class ProjectController {
     public Mono<ProjectEntity> createProject(@RequestBody ProjectEntity requestCSM){
         return projectservice.createProject(requestCSM);
     }
+
+    @GetMapping(value = "/projects/{id}")
+    public Mono<ProjectEntity> findProjectByID(@PathVariable Long id, @RequestHeader("x-request-ref-Id") String refId){
+        return projectservice.findProjectByID(id, refId);
+    }
 }

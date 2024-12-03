@@ -8,4 +8,6 @@ public interface ProjectService {
     Flux<ProjectEntity> getAllProjects(String refId, int page, int size);
 
     Mono<ProjectEntity> createProject(ProjectEntity requestCSM);
+
+    Mono<ProjectEntity> findProjectByID(Long id, String refId);
 }

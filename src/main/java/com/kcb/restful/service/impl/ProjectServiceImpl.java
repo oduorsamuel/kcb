@@ -35,4 +35,13 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
 
+    @Override
+    public Mono<ProjectEntity> findProjectByID(Long id, String refId) {
+        return Mono.fromCallable(() -> projectRepository.findById(id))
+                .flatMap(optionalProject -> optionalProject
+                        .map(Mono::just)
+                        .orElseGet(() -> Mono.error(new ProcessingException("Project not found with ID: " + id))))
+                .onErrorMap(throwable -> new ProcessingException("Error finding project: " + throwable.getMessage()));
+    }
+
 }
