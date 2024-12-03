@@ -2,6 +2,7 @@ package com.kcb.restful.controller;
 
 import com.kcb.restful.entity.ProjectEntity;
 import com.kcb.restful.entity.TaskEntity;
+import com.kcb.restful.model.ProjectDTO;
 import com.kcb.restful.service.ProjectService;
 import com.kcb.restful.service.TaskService;
 import org.springframework.web.bind.annotation.*;
@@ -32,9 +33,9 @@ public class ProjectController {
         return projectservice.createProject(requestCSM);
     }
 
-    @GetMapping(value = "/projects/{id}")
-    public Mono<ProjectEntity> findProjectByID(@PathVariable Long id, @RequestHeader("x-request-ref-Id") String refId){
-        return projectservice.findProjectByID(id, refId);
+    @GetMapping(value = "/projects/{projectId}")
+    public Mono<ProjectEntity> findProjectByID(@PathVariable Long projectId, @RequestHeader("x-request-ref-Id") String refId){
+        return projectservice.findProjectByID(projectId, refId);
     }
 
 
@@ -42,5 +43,13 @@ public class ProjectController {
     public Mono<TaskEntity> createTask(@PathVariable Long projectId, @RequestHeader("x-request-ref-Id") String refId,@RequestBody TaskEntity requestCSM){
 
         return taskService.createTask(projectId, requestCSM, refId);
+    }
+
+
+    @GetMapping(value = "/projects/{projectId}/task")
+    public Mono<ProjectDTO> getProjectTasks(@RequestParam(value = "page", defaultValue = "0") int page,
+                                            @RequestParam(value = "size", defaultValue = "10") int size, @RequestHeader("x-request-ref-Id") String refId, @PathVariable Long projectId){
+        return projectservice.getProjectTasks(projectId ,page,size);
+
     }
 }

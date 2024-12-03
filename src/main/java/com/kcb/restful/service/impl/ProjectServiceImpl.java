@@ -2,6 +2,7 @@ package com.kcb.restful.service.impl;
 
 import com.kcb.restful.entity.ProjectEntity;
 import com.kcb.restful.exemptionhandler.ProcessingException;
+import com.kcb.restful.model.ProjectDTO;
 import com.kcb.restful.repository.ProjectRepository;
 import com.kcb.restful.service.ProjectService;
 import org.springframework.data.domain.PageRequest;
@@ -42,6 +43,11 @@ public class ProjectServiceImpl implements ProjectService {
                         .map(Mono::just)
                         .orElseGet(() -> Mono.error(new ProcessingException("Project not found with ID: " + id))))
                 .onErrorMap(throwable -> new ProcessingException("Error finding project: " + throwable.getMessage()));
+    }
+
+    @Override
+    public Mono<ProjectDTO> getProjectTasks(Long projectId, int page, int size) {
+        return null;
     }
 
 }
