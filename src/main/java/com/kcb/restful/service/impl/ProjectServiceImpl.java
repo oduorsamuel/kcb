@@ -22,7 +22,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public Flux<ProjectEntity> getAllProjects(String refId, int page, int size) {
         Pageable paging = PageRequest.of(page, size);
-        List<ProjectEntity> data = projectRepository.findAll(paging).getContent();
+        List<ProjectEntity> data = projectRepository.findAllBy(paging);
         return Flux.fromIterable(data);
     }
 }
