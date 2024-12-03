@@ -52,4 +52,14 @@ public class ProjectController {
         return projectservice.getProjectTasks(projectId ,page,size);
 
     }
+
+    @PutMapping(value = " /tasks/{taskId}")
+    public Mono<TaskEntity> updateTask(@PathVariable Long taskId, @RequestHeader("x-request-ref-Id") String refId){
+        return taskService.updateTask(taskId, refId);
+    }
+
+    @DeleteMapping(value = " /tasks/{taskId}")
+    public Mono<TaskEntity> DeleteTask(@PathVariable Long taskId, @RequestHeader("x-request-ref-Id") String refId){
+        return taskService.delete(taskId, refId);
+    }
 }

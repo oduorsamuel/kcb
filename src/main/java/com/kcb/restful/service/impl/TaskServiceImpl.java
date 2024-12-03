@@ -1,7 +1,6 @@
 package com.kcb.restful.service.impl;
 
 import com.kcb.restful.entity.TaskEntity;
-import com.kcb.restful.exemptionhandler.ProcessingException;
 import com.kcb.restful.repository.ProjectRepository;
 import com.kcb.restful.repository.TaskRepository;
 import com.kcb.restful.service.TaskService;
@@ -27,6 +26,18 @@ public class TaskServiceImpl implements TaskService {
         // if exist save task
         return null;
 }
+
+    @Override
+    public Mono<TaskEntity> updateTask(Long taskId, String refId) {
+//        find task if exist update or else return not found
+
+        return null;
+    }
+
+    @Override
+    public Mono<TaskEntity> delete(Long taskId, String refId) {
+        return null;
+    }
 
 
 }
