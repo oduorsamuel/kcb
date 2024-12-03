@@ -1,6 +1,6 @@
-
 ## How to Deploy
-Configure CI/CD jenkins to run the pipeline
-On Jenkins file add clone, test, sonaqube and deploy stages on Jenkis
-Create git repository and link jenkins to the repository
-CI/CD will build the image based on docker file and push it to Openshift or cloud of your choice
+
+- Configure CI/CD Jenkins to run the pipeline.
+- On Jenkinsfile, add stages for clone, test, SonarQube, and deploy.
+- Create a Git repository and link Jenkins to the repository.
+- CI/CD will build the image based on the Dockerfile and push it to OpenShift or the cloud of your choice.  
