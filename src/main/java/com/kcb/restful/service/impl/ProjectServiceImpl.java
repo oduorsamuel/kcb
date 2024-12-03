@@ -1,6 +1,7 @@
 package com.kcb.restful.service.impl;
 
 import com.kcb.restful.entity.ProjectEntity;
+import com.kcb.restful.exemptionhandler.ProcessingException;
 import com.kcb.restful.repository.ProjectRepository;
 import com.kcb.restful.service.ProjectService;
 import org.springframework.data.domain.PageRequest;
@@ -25,4 +26,13 @@ public class ProjectServiceImpl implements ProjectService {
         List<ProjectEntity> data = projectRepository.findAllBy(paging);
         return Flux.fromIterable(data);
     }
+
+
+    @Override
+    public Mono<ProjectEntity> createProject(ProjectEntity requestCSM) {
+        return Mono.fromCallable(() -> projectRepository.save(requestCSM))
+                .onErrorMap(throwable -> new ProcessingException("Error creating project" + throwable.getMessage()));
+    }
+
+
 }

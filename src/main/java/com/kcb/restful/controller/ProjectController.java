@@ -1,5 +1,6 @@
 package com.kcb.restful.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.kcb.restful.entity.ProjectEntity;
 import com.kcb.restful.service.ProjectService;
 import org.springframework.web.bind.annotation.*;
@@ -19,5 +20,12 @@ public class ProjectController {
                                            @RequestParam(value = "size", defaultValue = "10") int size, @RequestHeader("x-request-ref-Id") String refId){
         return projectservice.getAllProjects(refId,page,size);
 
+    }
+
+
+    @PostMapping("/projects")
+
+    public Mono<ProjectEntity> createProject(@RequestBody ProjectEntity requestCSM){
+        return projectservice.createProject(requestCSM);
     }
 }
