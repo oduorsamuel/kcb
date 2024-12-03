@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.kcb</groupId>
 	<artifactId>restful</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>restful</name>
 	<description>Demo project for assessement</description>
 	<url/>
